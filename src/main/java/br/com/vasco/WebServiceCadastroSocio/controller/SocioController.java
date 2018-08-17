@@ -22,8 +22,8 @@ public class SocioController {
     }
 
     @RequestMapping( value = "/getSocio/{socio}", method = RequestMethod.GET)
-    public List<Socio> listaSocios(@PathVariable("socio") String nome){
-        List<Socio> listaSocios = socioRepository.findAll();
+    public List<Socio> buscaSocioNome(@PathVariable("socio") String nome){
+        List<Socio> listaSocios = socioRepository.findByNome(nome);
 
         return listaSocios;
     }
