@@ -24,13 +24,13 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
-@Configuration
+/*@Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
         entityManagerFactoryRef = "mysqlEntityManager",
         transactionManagerRef = "mysqlTransactionManager",
-        basePackages = "br.com.vasco.repository"
-)
+        basePackages = "br.com.vasco.WebServiceCadastroSocio.repository"
+)*/
 public class MysqlConfiguration {
     /**
      * MySQL datasource definition.

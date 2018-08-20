@@ -1,13 +1,17 @@
 package br.com.vasco.WebServiceCadastroSocio.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
+@NamedQuery(name = "Socio.findByName", query = "SELECT s FROM Socio s WHERE s.nome LIKE '%?%'")
 @Table(name = "socio")
-public class Socio {
+public class Socio implements Serializable {
+
+    public static final String FIND_BY_NAME = "Socio.findByName";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "nomeSocio", nullable = false)
