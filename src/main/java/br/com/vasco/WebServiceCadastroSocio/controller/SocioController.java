@@ -19,16 +19,16 @@ public class SocioController {
         this.socioRepository = socioRepository;
     }
 
-    @RequestMapping( value = "/getSocio", method = RequestMethod.GET)
-    public List<Socio> buscaSocio(@RequestParam(value="nome") String nome, @RequestParam(value="cpf") String cpf, @RequestParam(value="matricula") String matricula){
+    @RequestMapping( value = "/getSocio", method = RequestMethod.POST)
+    public List<Socio> buscaSocio(@RequestBody Socio socio){
         List<Socio> listaSocios = new ArrayList<>();
         try {
-            if( !matricula.isEmpty() ){
-                listaSocios = socioRepository.findByMatricula(matricula);
-            } else if( listaSocios.isEmpty() && !nome.isEmpty() ) {
-                listaSocios = socioRepository.findByNome(nome);
-            } else if( listaSocios.isEmpty() && !cpf.isEmpty() ) {
-                listaSocios = socioRepository.findByCpf(cpf);
+            if( socio.getMatricula() != null && !socio.getMatricula().isEmpty() ){
+                listaSocios = socioRepository.findByMatricula(socio.getMatricula());
+            } else if( listaSocios.isEmpty() && socio.getNome() != null && !socio.getNome().isEmpty() ) {
+                listaSocios = socioRepository.findByNome(socio.getNome());
+            } else if( listaSocios.isEmpty() && socio.getCpf() != null && !socio.getCpf().isEmpty() ) {
+                listaSocios = socioRepository.findByCpf(socio.getCpf());
             }
         }catch (Exception ex){
             ex.printStackTrace();
